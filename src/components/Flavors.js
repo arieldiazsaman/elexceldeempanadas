@@ -1,10 +1,10 @@
 import React from 'react'
 import { FlavorItem } from './FlavorItem'
 
-export const Flavors = ({ flavors }) => {
-    
+export const Flavors = ({ flavors, showFlavorModal }) => {
+
     const getFlavorItems = () => flavors.map((flavor) => <FlavorItem key={flavor.key} flavor={flavor.flavor} />)
-    
+
     return (
         <div className="inline-block w-48">
             {
@@ -14,7 +14,7 @@ export const Flavors = ({ flavors }) => {
                         getFlavorItems()
                     }
                     <div className="bg-gray-300 h-12 flex items-center justify-center">
-                        <button className="bg-white hover:bg-gray-100 text-gray-800 font-semibold py-2 px-4 border border-gray-400 rounded shadow">
+                        <button onClick={showFlavorModal} className="bg-white hover:bg-gray-100 text-gray-800 font-semibold py-2 px-4 border border-gray-400 rounded shadow" type="button">
                             +
                         </button>
                     </div>
