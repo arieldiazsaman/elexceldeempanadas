@@ -1,10 +1,8 @@
-import React from 'react';
-import { AppScreen } from './components/AppScreen';
+import React from "react";
+import { AppScreen } from "./components/AppScreen";
 
 function App() {
-  return (
-    <AppScreen />
-  );
+  return <AppScreen />;
 }
 
 export default App;
