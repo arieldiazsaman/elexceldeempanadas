@@ -1,3 +1,4 @@
+import { render } from "enzyme";
 import React from "react";
 import { Flavors } from "./Flavors";
 import { People } from "./People";
@@ -7,44 +8,76 @@ export const AppScreen = () => {
   const data = {
     names: {
       jorge: {
-        jamonyqueso: 1,
-        carne: 2,
+        name: "Jorge",
+        flavors: {
+          jamonyqueso: 1,
+          carne: 2,
+        },
       },
       ariel: {
-        jamonyqueso: 2,
-        carne: 2,
+        name: "Ariel",
+        flavors: {
+          jamonyqueso: 2,
+          carne: 2,
+        },
+      },
+      lujan: {
+        name: "Lujan",
+        flavors: {},
       },
     },
-    // names: [
-    //   {
-    //     name: "Jorge",
-    //     flavors: {
-    //       carne: 2,
-    //       jamon: 2,
-    //     },
-    //   },
-    //   {
-    //     name: "Ariel",
-    //     flavors: {
-    //       carne: 3,
-    //       jamon: 4,
-    //     },
-    //   },
-    // ],
     flavors: {
       jamonyqueso: "Jamon y queso",
       carne: "Carne",
+      pollo: "Pollo",
     },
   };
-  const names = Object.keys(data.names);
-  console.group("AppScreen");
-  console.log("data:", data);
-  console.log("Ok:", Object.keys(data.names));
-  console.groupEnd();
 
-  console.group("names");
-  names.map((name) => console.log(name));
-  console.groupEnd();
+  const renderHead = (names) => {
+    const keys = Object.keys(names);
+    return keys.map((key) => <th>{names[key].name}</th>);
+  };
+
+  const renderBody = (names, flavors) => {
+    const flavorKeys = Object.keys(flavors);
+    const nameKeys = Object.keys(names);
+    return flavorKeys.map((flavorKey) => {
+      let sum = 0;
+      return (
+        <tr>
+          <td>{flavors[flavorKey]}</td>
+          {nameKeys.map((nameKey) => {
+            const flavorAmount = names[nameKey].flavors[flavorKey];
+            if (flavorAmount) sum += flavorAmount;
+            return <td>{flavorAmount || 0}</td>;
+          })}
+          <td>{sum}</td>
+        </tr>
+      );
+    });
+  };
+
+  const renderPeopleSummary = (names, flavors) => {
+    const flavorKeys = Object.keys(flavors);
+    const nameKeys = Object.keys(names);
+    let totalSum = 0;
+    return (
+      <tr>
+        <td>+</td>
+        {nameKeys.map((nameKey) => {
+          let sum = 0;
+          flavorKeys.forEach((flavorKey) => {
+            const flavorAmount = names[nameKey].flavors[flavorKey];
+            if (flavorAmount) sum += names[nameKey].flavors[flavorKey];
+          });
+          totalSum += sum;
+          return <td>{sum}</td>;
+        })}
+        <td>{totalSum}</td>
+      </tr>
+    );
+  };
+
   return (
     <div className="container">
       <div className="flex bg-gray-100">
@@ -52,30 +85,13 @@ export const AppScreen = () => {
           <thead>
             <tr>
               <th></th>
-              <th>Jorge</th>
-              <th>Ariel</th>
+              {renderHead(data.names)}
               <th>+</th>
             </tr>
           </thead>
           <tbody>
-            <tr>
-              <td>Carne</td>
-              <td>2</td>
-              <td>3</td>
-              <td>5</td>
-            </tr>
-            <tr>
-              <td>Jamon y queso</td>
-              <td>2</td>
-              <td>4</td>
-              <td>6</td>
-            </tr>
-            <tr>
-              <td>+</td>
-              <td>4</td>
-              <td>7</td>
-              <td>11</td>
-            </tr>
+            {renderBody(data.names, data.flavors)}
+            {renderPeopleSummary(data.names, data.flavors)}
           </tbody>
         </table>
         {/* <Flavors flavors={data.flavors} />
