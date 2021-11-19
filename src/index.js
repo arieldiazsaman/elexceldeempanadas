@@ -1,10 +1,7 @@
-import React from 'react';
-import ReactDOM from 'react-dom'
+import React from "react";
+import ReactDOM from "react-dom";
 
-import App from './App';
-import './styles/tailwind.output.css'
+import App from "./App";
+import "./styles/tailwind.css";
 
-ReactDOM.render(
-  <App />,
-  document.getElementById('root')
-);
+ReactDOM.render(<App />, document.getElementById("root"));
