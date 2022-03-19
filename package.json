@@ -1,22 +1,20 @@
 {
-  "name": "exelempanadas",
+  "name": "elexceldeempanadas",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
     "@craco/craco": "^6.4.0",
     "@testing-library/jest-dom": "^4.2.4",
     "@testing-library/user-event": "^7.2.1",
-    "postcss-cli": "^7.1.1",
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
     "react-scripts": "4.0.3"
   },
   "scripts": {
-    "start": "craco start",
-    "build": "craco build",
-    "test": "craco test",
-    "eject": "react-scripts eject",
-    "build:css": "postcss src/styles/tailwind.css -o src/styles/tailwind.output.css"
+    "start": "react-scripts start",
+    "build": "react-scripts build",
+    "test": "react-scripts test",
+    "eject": "react-scripts eject"
   },
   "eslintConfig": {
     "extends": "react-app"
@@ -34,12 +32,6 @@
     ]
   },
   "devDependencies": {
-    "@testing-library/react": "^9.5.0",
-    "autoprefixer": "^9.8.8",
-    "enzyme": "^3.11.0",
-    "enzyme-adapter-react-16": "^1.15.2",
-    "enzyme-to-json": "^3.5.0",
-    "postcss": "^7.0.39",
-    "tailwindcss": "npm:@tailwindcss/postcss7-compat@^2.2.17"
+    "@testing-library/react": "^9.5.0"
   }
 }
